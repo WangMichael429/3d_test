@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://x58h8kr2aifu"]
+
+[ext_resource type="Script" uid="uid://b3v8fa3rphrf1" path="res://Scripts/main.gd" id="1_bo1nx"]
+[ext_resource type="PackedScene" uid="uid://b0ipyxcr6w3e8" path="res://Scenes/player.tscn" id="1_jjgbg"]
+[ext_resource type="PackedScene" uid="uid://criacnds284oo" path="res://Scenes/gui.tscn" id="3_8gbba"]
+[ext_resource type="PackedScene" uid="uid://cjj2haffaoyo1" path="res://Scenes/death_screen.tscn" id="4_jjvhh"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bo1nx"]
+albedo_color = Color(0, 0, 0, 1)
+emission_enabled = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_bo1nx"]
+material = SubResource("StandardMaterial3D_bo1nx")
+size = Vector2(10000, 10000)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_8gbba"]
+data = PackedVector3Array(5000, 0, 5000, -5000, 0, 5000, 5000, 0, -5000, -5000, 0, 5000, -5000, 0, -5000, 5000, 0, -5000)
+
+[node name="Main" type="Node3D" unique_id=2011491754]
+script = ExtResource("1_bo1nx")
+
+[node name="Player" parent="." unique_id=703527238 instance=ExtResource("1_jjgbg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7204871, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=2121172815]
+transform = Transform3D(1, 0, 0, 0, 0.012321713, 0.9999241, 0, -0.9999241, 0.012321713, 0, 8.0474415, 0)
+shadow_enabled = true
+
+[node name="Obstacles" type="Node3D" parent="." unique_id=1996475193]
+
+[node name="Plane" type="MeshInstance3D" parent="." unique_id=496104785]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+mesh = SubResource("PlaneMesh_bo1nx")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Plane" unique_id=841242562]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Plane/StaticBody3D" unique_id=576870486]
+shape = SubResource("ConcavePolygonShape3D_8gbba")
+
+[node name="Gui" parent="." unique_id=1371695093 instance=ExtResource("3_8gbba")]
+
+[node name="DeathScreen" parent="Gui" unique_id=696861207 instance=ExtResource("4_jjvhh")]
+visible = false
+layout_mode = 1

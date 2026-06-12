@@ -1,0 +1,97 @@
+[gd_scene format=3 uid="uid://dgd56w0217dyo"]
+
+[ext_resource type="Script" uid="uid://ccr8mnfqa6dik" path="res://Scripts/orb.gd" id="1_iphwf"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_iphwf"]
+radius = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_indf0"]
+albedo_color = Color(0, 0, 0, 1)
+grow = true
+grow_amount = -2.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_iphwf"]
+material = SubResource("StandardMaterial3D_indf0")
+radius = 0.001
+height = 0.001
+
+[sub_resource type="Curve" id="Curve_apg4f"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_upyv0"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iphwf"]
+albedo_color = Color(0, 0, 0, 1)
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_7ybxw"]
+material = SubResource("StandardMaterial3D_iphwf")
+
+[sub_resource type="Curve" id="Curve_iphwf"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.48412696, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1rw4f"]
+no_depth_test = true
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+billboard_mode = 1
+billboard_keep_scale = true
+grow_amount = 2.935
+
+[sub_resource type="TextMesh" id="TextMesh_iphwf"]
+material = SubResource("StandardMaterial3D_1rw4f")
+text = "-10"
+font_size = 64
+
+[node name="Orb" type="Area3D" unique_id=1719927044]
+script = ExtResource("1_iphwf")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1221198515]
+shape = SubResource("SphereShape3D_iphwf")
+
+[node name="Main" type="CPUParticles3D" parent="." unique_id=1141592141]
+amount = 64
+lifetime = 0.25
+local_coords = true
+mesh = SubResource("SphereMesh_iphwf")
+particle_flag_align_y = true
+gravity = Vector3(0, 0, 0)
+radial_accel_min = 1.0
+radial_accel_max = 10.0
+scale_amount_min = 0.1
+scale_amount_max = 0.5
+scale_amount_curve = SubResource("Curve_apg4f")
+color_ramp = SubResource("Gradient_upyv0")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Main" unique_id=1185420626]
+light_energy = 16.0
+light_size = 2.275
+light_negative = true
+omni_range = 1.0
+
+[node name="Particles" type="CPUParticles3D" parent="." unique_id=1119903849]
+amount = 64
+lifetime = 0.25
+speed_scale = 0.5
+local_coords = true
+mesh = SubResource("BoxMesh_7ybxw")
+emission_shape = 2
+emission_sphere_radius = 0.9
+particle_flag_align_y = true
+gravity = Vector3(0, 0, 0)
+radial_accel_min = 1.0
+radial_accel_max = 50.0
+scale_amount_min = 0.05
+scale_amount_max = 0.1
+scale_amount_curve = SubResource("Curve_iphwf")
+color_ramp = SubResource("Gradient_upyv0")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=480521662]
+mesh = SubResource("TextMesh_iphwf")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://dplnsq0nium7c"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_i054t"]
+height = 10.0
+radius = 0.05
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_aoiic"]
+height = 0.94592285
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i054t"]
+albedo_color = Color(1, 0.30980393, 0.30980393, 1)
+emission_enabled = true
+emission = Color(1, 0.44313726, 0, 1)
+emission_energy_multiplier = 0.82
+grow = true
+
+[sub_resource type="TubeTrailMesh" id="TubeTrailMesh_l7nt8"]
+material = SubResource("StandardMaterial3D_i054t")
+
+[sub_resource type="Curve" id="Curve_apg4f"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.5740741, 0.12191558), 0.0, 0.0, 0, 0, Vector2(0.9973544, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_upyv0"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[node name="Killbrick" type="Area3D" unique_id=1719927044]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1221198515]
+shape = SubResource("CylinderShape3D_i054t")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="." unique_id=1763893100]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.9904175, 0)
+shape = SubResource("CylinderShape3D_aoiic")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="." unique_id=125426336]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.0076165, 0)
+shape = SubResource("CylinderShape3D_aoiic")
+
+[node name="Main" type="CPUParticles3D" parent="." unique_id=1141592141]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 0)
+amount = 64
+lifetime = 0.45
+speed_scale = 0.5
+local_coords = true
+mesh = SubResource("TubeTrailMesh_l7nt8")
+particle_flag_align_y = true
+gravity = Vector3(0, 100, 0)
+scale_amount_min = 0.5
+scale_amount_curve = SubResource("Curve_apg4f")
+color_ramp = SubResource("Gradient_upyv0")

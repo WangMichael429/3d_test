@@ -1,0 +1,77 @@
+[gd_scene format=3 uid="uid://b0ipyxcr6w3e8"]
+
+[ext_resource type="Script" uid="uid://gxwlkklyorus" path="res://Scripts/player.gd" id="1_v0iea"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_v0iea"]
+size = Vector3(0.5, 0.5, 0.5)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_6t5aa"]
+
+[sub_resource type="Gradient" id="Gradient_v0iea"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_cvnsp"]
+gradient = SubResource("Gradient_v0iea")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v0iea"]
+emission_enabled = true
+emission = Color(0, 1, 1, 1)
+grow_amount = 1.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_v0iea"]
+material = SubResource("StandardMaterial3D_v0iea")
+
+[sub_resource type="Curve" id="Curve_vgqql"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_fkybt"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[node name="Player" type="CharacterBody3D" unique_id=703527238]
+script = ExtResource("1_v0iea")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=448421054]
+shape = SubResource("BoxShape3D_v0iea")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=2029393256]
+visible = false
+mesh = SubResource("CapsuleMesh_6t5aa")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1064463903]
+transform = Transform3D(1, 0, 0, 0, 0.6985152, 0.71559525, 0, -0.71559525, 0.6985152, 0, 4.640789, 2.7834532)
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=932608713]
+visible = false
+modulate = Color(0, 0, 0, 1)
+billboard = 1
+texture = SubResource("GradientTexture2D_cvnsp")
+
+[node name="Main" type="CPUParticles3D" parent="." unique_id=1969748028]
+amount = 64
+lifetime = 0.25
+local_coords = true
+mesh = SubResource("BoxMesh_v0iea")
+emission_shape = 1
+emission_sphere_radius = 0.3
+gravity = Vector3(0, 0, 0)
+radial_accel_min = 1.0
+radial_accel_max = 10.0
+scale_amount_min = 0.1
+scale_amount_max = 0.5
+scale_amount_curve = SubResource("Curve_vgqql")
+color_ramp = SubResource("Gradient_fkybt")
+
+[node name="Trail" type="CPUParticles3D" parent="." unique_id=1333090505]
+emitting = false
+amount = 128
+one_shot = true
+mesh = SubResource("BoxMesh_v0iea")
+emission_shape = 1
+emission_sphere_radius = 0.3
+gravity = Vector3(0, 0, 0)
+radial_accel_min = 1.0
+radial_accel_max = 10.0
+scale_amount_min = 0.1
+scale_amount_max = 0.5
+scale_amount_curve = SubResource("Curve_vgqql")
+color_ramp = SubResource("Gradient_fkybt")

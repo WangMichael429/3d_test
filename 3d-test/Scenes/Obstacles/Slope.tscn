@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://of0p2yjg2uvc"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p3r2o"]
+
+[sub_resource type="PrismMesh" id="PrismMesh_p3r2o"]
+material = SubResource("StandardMaterial3D_p3r2o")
+left_to_right = 0.0
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_p3r2o"]
+data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
+
+[node name="StaticBody3D" type="StaticBody3D" unique_id=1750160368]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1946450907]
+mesh = SubResource("PrismMesh_p3r2o")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=321376607]
+shape = SubResource("ConcavePolygonShape3D_p3r2o")

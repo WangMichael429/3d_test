@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://cjj2haffaoyo1"]
+
+[node name="DeathScreen" type="Control" unique_id=696861207]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="." unique_id=1022930881]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -400.0
+offset_top = 75.0
+offset_right = 400.0
+offset_bottom = 225.0
+grow_horizontal = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 64
+text = "You died"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
